@@ -65,7 +65,7 @@ class ApiViajesController extends ApiController {
             $this->view->response(['msg' => 'Error al obtener los viajes'], 404);
         }
     }
-    public function getOrderedViajessById($params = []) {
+    public function getOrderedViajesById($params = []) {
         $order = $params[':order']; // Captura el parámetro de orden (ASC o DESC)
 
         if ($order !== 'ASC' && $order !== 'DESC') {
@@ -112,7 +112,7 @@ class ApiViajesController extends ApiController {
         }
     }
 
-    public function delete($params = []) {
+    public function deleteViaje($params = []) {
         $idViaje = $params[':ID'];
         
         // Verifica que el viaje exista antes de eliminarla
