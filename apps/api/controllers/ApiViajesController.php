@@ -26,7 +26,7 @@ class ApiViajesController extends ApiController {
             $viajes =  $this->viajeModel->getViajesByDestino($params[':ID']);
             if (!empty($viajes)) {
                 // Responde con las prendas obtenidas y un mensaje de éxito
-                $this->view->response(['msg' => 'Datos del los viajes por categoria obtenidos con éxito', 'viajes' => $viajes], 200);
+                $this->view->response(['msg' => 'Datos del los viajes por destino obtenidos con éxito', 'viajes' => $viajes], 200);
             } else {
                 // Si no se encuentran prendas para la categoría dada, responde con error 404
                 $this->view->response(['msg' => "El ID ".$params[':ID'].": no existe"], 404);
@@ -128,7 +128,7 @@ class ApiViajesController extends ApiController {
     }
 
     // Método para crear un nuevo viaje
-    public function create($params = []) {
+    public function createViaje($params = []) {
         $body =  $this->getData(); // Obtiene el cuerpo de la solicitud como un objeto JSON
 
         $fecha = $body->fecha;
