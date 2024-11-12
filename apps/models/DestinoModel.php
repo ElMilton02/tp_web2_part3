@@ -1,7 +1,7 @@
 <?php
 
 require_once './config.php';
-require_once './app/models/Model.php';
+require_once './apps/models/Model.php';
 
 class DestinoModel extends Model
 {

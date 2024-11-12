@@ -1,7 +1,7 @@
 <?php
 
 require_once './config.php';
-require_once './app/models/model.php';
+require_once './apps/models/model.php';
 
 class LoginModel extends Model
 {
