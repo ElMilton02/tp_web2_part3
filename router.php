@@ -49,10 +49,17 @@
     $router->addRoute('viajes', 'POST', 'ApiViajesController', 'createViaje');
 
     // Actualizar un viaje existente (PUT)
-    // 
+    // http://localhost/tp_web2_part3/api/viajes/63
+    // ej:
+    //    {
+    //      "fecha": "2000-11-15",
+    //      "hora": "14:40:00",
+    //      "destinoId": 3
+    //    }
     $router->addRoute('viajes/:ID', 'PUT', 'ApiViajesController', 'updateViaje');
 
     // Eliminar un viaje específico (DELETE)
+    // http://localhost/tp_web2_part3/api/viajes/63
     $router->addRoute('viajes/:ID', 'DELETE', 'ApiViajesController', 'deleteViaje');
 
     // Maneja la solicitud de recurso con el método HTTP especificado

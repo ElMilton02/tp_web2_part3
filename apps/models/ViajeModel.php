@@ -34,10 +34,10 @@ class viajeModel extends Model
         return $this->db->lastInsertId();
     }
 
-    public function modifyViaje($newFecha, $newHora, $viajeid)
+    public function modifyViaje($newFecha, $newHora, $newDestinoId, $viajeId)
     {  
-        $query = $this->db->prepare('UPDATE viajes SET fecha = ?, hora = ? WHERE id = ?');
-        $query->execute([$newFecha, $newHora, $viajeid]);
+        $query = $this->db->prepare('UPDATE viajes SET fecha = ?, hora = ?, id_destinos = ? WHERE id = ?');
+        $query->execute([$newFecha, $newHora, $newDestinoId, $viajeId]);
     }
 
     //nuevas funciones

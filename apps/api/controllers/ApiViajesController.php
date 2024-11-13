@@ -170,11 +170,14 @@ class ApiViajesController extends ApiController {
         }
         if(!empty($id)){
             if($Viaje){
-                $body = $this->getData(); // Obtiene los datos de la solicitud
-                $fecha = $body->fecha;
-                $hora = $body->hora;
-                $destinoId = $body->destinoId;
-                $this->viajeModel->modifyViaje($fecha, $hora, $destinoId); 
+                $body = $this->getData();
+                $newFecha = $body->fecha;
+                $newHora = $body->hora;
+                $newDestinoId = $body->destinoId;
+
+                // Actualizar el viaje
+                $this->viajeModel->modifyViaje($newFecha, $newHora, $newDestinoId, $id);
+
                 $this->view->response(['msg' => 'El viaje fue modificado con éxito.', 'Viaje' => $Viaje], 201);
             } else {
                 $this->view->response(['msg' => "El ID ".$id.": no existe"], 404);
@@ -185,17 +188,4 @@ class ApiViajesController extends ApiController {
             return;
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
