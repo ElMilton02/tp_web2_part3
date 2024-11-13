@@ -55,39 +55,30 @@ class viajeModel extends Model
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-     // Método que obtiene las categorías ordenadas por un campo específico
-     public function getViajesOrdered($order) {
-        // Se prepara una consulta SQL que selecciona todas las columnas de la tabla 'categorias' y las ordena según el parámetro $order
+    public function getViajesOrdered($order) {
         $query = $this->db->prepare("SELECT * FROM Viajes ORDER BY id_destinos $order");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function getViajesOrderedByIdDestinos($id, $order) {
-
         $query = $this->db->prepare("SELECT * FROM Viajes ORDER BY id $order");
-        $query->execute([$id]);
-
+        $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function viajeExiste($idViaje) {
-        // Prepara una consulta SQL que cuenta el número de categorías con el ID dado
         $query = $this->db->prepare('SELECT COUNT(*) as count FROM Viajes WHERE id = ?');
-        // Ejecuta la consulta, pasando el ID como parámetro
         $query->execute([$idViaje]);
-
-        // Almacena el resultado como un arreglo asociativo
         $result = $query->fetch(PDO::FETCH_ASSOC);
-
-        // Retorna true si el conteo es mayor a cero, indicando que la categoría existe
+        // Retorna true si el conteo es mayor a cero, indicando que el viaje existe
         return $result['count'] > 0;
     }
 
     function getViajes() {
         $query = $this->db->prepare('SELECT * FROM Viajes');
         $query->execute();
-        $categories = $query->fetchAll(PDO::FETCH_OBJ);
-        return $categories;
+        $viajes = $query->fetchAll(PDO::FETCH_OBJ);
+        return $viajes;
     }
 }

@@ -22,13 +22,12 @@ class ApiViajesController extends ApiController {
             $destinos = $this->destinoModel->getDestinos();
             $this->view->response(['msg' => 'Datos de los destinos obtenidos con éxito', 'destinos' => $destinos], 200);
         } else {
-            // Obtiene prendas por categoría usando el ID de la categoría proporcionado
+          
             $viajes =  $this->viajeModel->getViajesByDestino($params[':ID']);
             if (!empty($viajes)) {
                 // Responde con las prendas obtenidas y un mensaje de éxito
                 $this->view->response(['msg' => 'Datos del los viajes por destino obtenidos con éxito', 'viajes' => $viajes], 200);
             } else {
-                // Si no se encuentran prendas para la categoría dada, responde con error 404
                 $this->view->response(['msg' => "El ID ".$params[':ID'].": no existe"], 404);
                 return;
             }
@@ -94,21 +93,30 @@ class ApiViajesController extends ApiController {
 
     }
 
-    // Método para obtener categorías filtradas por letra inicial
     public function getFilterDestinos($params = []) {
-        $filtro = $params[':letter']; // Captura la letra para el filtrado
-
-        if (!$filtro) {
-            $this->view->response(['msg' => 'Filtrado vacio.'], 400);
+        // Verificar si existe el parámetro letter
+        if (!isset($params[':letter'])) {
+            $this->view->response(['msg' => 'Parámetro de filtrado no proporcionado.'], 400);
             return;
         }
-        // Obtiene las categorías filtradas por la letra inicial
+    
+        $filtro = $params[':letter']; // Nota el ':' antes de letter
+    
+        if (empty($filtro)) {
+            $this->view->response(['msg' => 'Filtrado vacío.'], 400);
+            return;
+        }
+    
+        // Obtiene los destinos filtrados por la letra inicial
         $destinosFiltrado = $this->destinoModel->getDestinosFilter($filtro);
-
-        if (!empty($destinoFiltrado)) {
-            $this->view->response(['msg' => 'Datos de los destinos filtrados obtenidas con éxito', 'Destinos' => $destinosFiltrado], 200);
+    
+        if (!empty($destinosFiltrado)) { // Corregido el nombre de la variable
+            $this->view->response([
+                'msg' => 'Datos de los destinos filtrados obtenidos con éxito', 
+                'destinos' => $destinosFiltrado
+            ], 200);
         } else {
-            $this->view->response(['msg' => 'No se encontro resultado.'], 404);
+            $this->view->response(['msg' => 'No se encontraron resultados.'], 404);
         }
     }
 
@@ -133,10 +141,11 @@ class ApiViajesController extends ApiController {
 
         $fecha = $body->fecha;
         $hora = $body->hora;
-        $destinoId = $body->destinoId; // Extrae el nombre de la categoría
-        // Verifica que el campo de la categoría no esté vacío
+        $destinoId = $body->destinoId; 
+
         if (empty($fecha) || empty($hora) || empty($destinoId)) {
             $this->view->response(['msg' => 'Campo incompleto'], 400);
+            return;
         } else {
             $viajeId = $this->viajeModel->insertViaje($fecha, $hora, $destinoId); // Inserta el viaje
             // Crea el objeto de respuesta con la información del viaje creado
@@ -165,7 +174,7 @@ class ApiViajesController extends ApiController {
                 $fecha = $body->fecha;
                 $hora = $body->hora;
                 $destinoId = $body->destinoId;
-                $this->viajeModel->modifyViaje($fecha, $hora, $destinoId); // Actualiza la categoría
+                $this->viajeModel->modifyViaje($fecha, $hora, $destinoId); 
                 $this->view->response(['msg' => 'El viaje fue modificado con éxito.', 'Viaje' => $Viaje], 201);
             } else {
                 $this->view->response(['msg' => "El ID ".$id.": no existe"], 404);

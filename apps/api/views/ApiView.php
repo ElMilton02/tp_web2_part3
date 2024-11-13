@@ -1,10 +1,10 @@
 <?php 
 class ApiView
 {
-    public function response($categories, $status) {
+    public function response($viajes, $status) {
         header('Content-type: application/json');
         header('HTTP/1.1 '.$status." ".$this->_requestStatus($status));
-        echo json_encode($categories);
+        echo json_encode($viajes);
     }
 
     private function _requestStatus($code) {

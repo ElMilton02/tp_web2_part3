@@ -49,7 +49,6 @@ class DestinoModel extends Model
     //nuevas funciones
 
     public function destinoExiste($idDestino) {
-        // Prepara una consulta SQL que cuenta el número de categorías con el ID dado
         $query = $this->db->prepare('SELECT COUNT(*) as count FROM Destinos WHERE id = ?');
         $query->execute([$idDestino]);
         $result = $query->fetch(PDO::FETCH_ASSOC);
@@ -57,12 +56,10 @@ class DestinoModel extends Model
     }
 
     public function getDestinosFilter($filtro){
-        // Se prepara una consulta SQL que selecciona todas las columnas de 'categorias' donde 'categoria' comienza con el valor del filtro
-        $query = $this->db->prepare("SELECT * FROM Destinos WHERE Destino LIKE '$filtro%'");
-        // Ejecuta la consulta
+        $query = $this->db->prepare("SELECT * FROM Destinos WHERE Destino LIKE :filtro");
+        // Asigna el valor a :filtro con el comodín %, asegurando que busque cualquier nombre que comience con la letra
+        $query->bindValue(':filtro', $filtro . '%', PDO::PARAM_STR);
         $query->execute();
-        
-        // Retorna el resultado como un arreglo de objetos
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 }
