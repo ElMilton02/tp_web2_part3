@@ -16,27 +16,27 @@ Este proyecto es un sitio web para programar viajes en avión. La aplicación pe
 
     - tp_web2_part3/api/destinos
 
-        - Esta ruta muestra los destinos ej: http://localhost/tp_web2_part3/api/destinos
+        - Esta ruta muestra los destinos http://localhost/tp_web2_part3/api/destinos
 
     - tp_web2_part3/api/destinos/:ID/viajes
         
-        - Esta ruta permite obtener viajes por destino específico ej: http://localhost/tp_web2_part3/api/destinos/1/viajes
+        - Esta ruta permite obtener viajes por destino específico http://localhost/tp_web2_part3/api/destinos/1/viajes
     
     - tp_web2_part3/api/viajes/order/:order
 
-        - Esta ruta ordena viajes por orden ascendente o descendente ej: http://localhost/tp_web2_part3/api/viajes/order/DESC
+        - Esta ruta ordena viajes por orden ascendente o descendente http://localhost/tp_web2_part3/api/viajes/order/DESC
     
     - tp_web2_part3/api/destinos/:ID/viajes/order/:order
 
-        - Esta ruta ordena viajes por ID de destino y orden ej: http://localhost/tp_web2_part3/api/destinos/1/viajes/order/DESC
+        - Esta ruta ordena viajes por ID de destino y orden http://localhost/tp_web2_part3/api/destinos/1/viajes/order/DESC
     
     - tp_web2_part3/api/destinos/filter/:letter
        
-        - Fsta ruta permite filtrar destinos por letra inicial ej: http://localhost/tp_web2_part3/api/destinos/filter/a
+        - Fsta ruta permite filtrar destinos por letra inicial http://localhost/tp_web2_part3/api/destinos/filter/a
  
     - tp_web2_part3/api/viajes/page/:page
 
-        - Esta ruta permite obtener viajes paginados ej: http://localhost/tp_web2_part3/api/viajes/page/1
+        - Esta ruta permite obtener viajes paginados http://localhost/tp_web2_part3/api/viajes/page/1
 
 
 - __POST__
