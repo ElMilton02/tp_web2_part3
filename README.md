@@ -44,12 +44,14 @@ Este proyecto es un sitio web para programar viajes en avión. La aplicación pe
     - tp_web2_part3/api/viajes
 
         - Esta ruta permite agregar un viaje http://localhost/tp_web2_part3/api/viajes
-            ej:
+            - ej:
+            ```json
                 {
                     "fecha": "2000-11-15",
                     "hora": "14:30:00",
                     "destinoId": 1
                 }
+            ```
 
 
 - __PUT__
@@ -57,12 +59,14 @@ Este proyecto es un sitio web para programar viajes en avión. La aplicación pe
     - tp_web2_part3/api/viajes/:ID
 
         -  Esta ruta permite actualizar un viaje existente http://localhost/tp_web2_part3/api/viajes/63
-            ej:
+            - ej:
+            ```json
                 {
                 "fecha": "2000-11-15",
                 "hora": "14:40:00",
                 "destinoId": 3
                 }
+            ```
 
 
 - __DELETE__
