@@ -185,8 +185,15 @@ class ApiViajesController extends ApiController {
         }   
     }
 
-    function getViajesById (){
+    function getViajesById ($params = []){
         
+        $id = $params[':ID'];
+        $viaje = $this->viajeModel->getViajeById($id);
+        if ($viaje) {
+            $this->view->response($viaje, 200);
+        } else {
+            $this->view->response(["message" => "Viaje no encontrado"], 404);
+        }
     }
 
 /*
