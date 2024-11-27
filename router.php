@@ -65,10 +65,10 @@
     nuevos endpoints acorde a los comentario echos */
 
     $router->addRoute('viajes', 'GET', 'ApiViajesController', 'getAllViajes'); // Obtener todos los viajes (filtros/paginación incluidos)
-    $router->addRoute('viajes/:id', 'GET', 'ApiViajesController', 'getViajeById'); // Obtener un viaje por ID
+    $router->addRoute('viajes/:ID', 'GET', 'ApiViajesController', 'getViajesById'); // Obtener un viaje por ID
     $router->addRoute('viajes', 'POST', 'ApiViajesController', 'createViaje'); // Crear un viaje
-    $router->addRoute('viajes/:id', 'PUT', 'ApiViajesController', 'updateViaje'); // Actualizar un viaje por ID
-    $router->addRoute('viajes/:id', 'DELETE', 'ApiViajesController', 'deleteViaje'); // Eliminar un viaje por ID
+    $router->addRoute('viajes/:ID', 'PUT', 'ApiViajesController', 'updateViaje'); // Actualizar un viaje por ID
+    $router->addRoute('viajes/:ID', 'DELETE', 'ApiViajesController', 'deleteViaje'); // Eliminar un viaje por ID
 
     // Maneja la solicitud de recurso con el método HTTP especificado
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);
