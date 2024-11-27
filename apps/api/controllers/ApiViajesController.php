@@ -16,36 +16,6 @@ class ApiViajesController extends ApiController {
         $this->destinoModel = new DestinoModel();
     }
 
-    public function getDestinos($params = []) {
-        // Verifica si no se han pasado parámetros
-        if (empty($params)) {
-            $destinos = $this->destinoModel->getDestinos();
-            $this->view->response(['msg' => 'Datos de los destinos obtenidos con éxito', 'destinos' => $destinos], 200);
-        } else {
-          
-            $viajes =  $this->viajeModel->getViajesByDestino($params[':ID']);
-            if (!empty($viajes)) {
-                // Responde con las prendas obtenidas y un mensaje de éxito
-                $this->view->response(['msg' => 'Datos del los viajes por destino obtenidos con éxito', 'viajes' => $viajes], 200);
-            } else {
-                $this->view->response(['msg' => "El ID ".$params[':ID'].": no existe"], 404);
-                return;
-            }
-        }
-    }
-    // Método para obtener viajes de forma paginada
-    public function getViajesPag($params = []) { 
-        // Establece la página por defecto en 1 si no se proporciona
-        $page = isset($params[':page']) ? $params[':page'] : 1;
-        $perPage = 3; // Número fijo de viajes por página
-        // Obtiene los viajes paginados
-        $viajes = $this->viajeModel->getViajesPaginated($page, $perPage);
-        if (!empty($viajes)) {
-            $this->view->response(['msg' => 'Datos de los viajes obtenidos con éxito', 'viajes' => $viajes], 200);
-        } else {
-            $this->view->response(['msg' => 'Error al obtener los viajes o la página solicitada no tiene resultados'], 404);
-        }
-    }
 
     public function getOrderedViajes($params = []) {
         $order = $params[':order']; // Captura el parámetro de orden (ASC o DESC)
@@ -144,8 +114,9 @@ class ApiViajesController extends ApiController {
         $destinoId = $body->destinoId; 
 
         if (empty($fecha) || empty($hora) || empty($destinoId)) {
-            $this->view->response(['msg' => 'Campo incompleto'], 400);
-            return;
+            return $this->view->response(['msg' => 'Campo incompleto'], 400);   
+        } else if (!$this->destinoModel->destinoExiste($destinoId)){
+            return $this->view->response(['msg' => 'El destino especificado no existe'], 404);
         } else {
             $viajeId = $this->viajeModel->insertViaje($fecha, $hora, $destinoId); // Inserta el viaje
             // Crea el objeto de respuesta con la información del viaje creado
@@ -160,32 +131,70 @@ class ApiViajesController extends ApiController {
         }
     }
 
+
+
     public function updateViaje($params = []) {
-        $id = $params[':ID']; 
-        $Viaje = $this->viajeModel->getViajeById($id);
-
+        $id = $params[':ID'];
+    
+        // Verificar que el viaje exista
         if (!$this->viajeModel->ViajeExiste($id)) {
-            $this->view->response(['msg' => 'El viaje ' . $id .  ' especificado no existe'], 401);
-            return;
+            return $this->view->response(['msg' => 'El viaje especificado no existe'], 404);
         }
-        if(!empty($id)){
-            if($Viaje){
-                $body = $this->getData();
-                $newFecha = $body->fecha;
-                $newHora = $body->hora;
-                $newDestinoId = $body->destinoId;
-
-                // Actualizar el viaje
-                $this->viajeModel->modifyViaje($newFecha, $newHora, $newDestinoId, $id);
-
-                $this->view->response(['msg' => 'El viaje fue modificado con éxito.', 'Viaje' => $Viaje], 201);
-            } else {
-                $this->view->response(['msg' => "El ID ".$id.": no existe"], 404);
-                return;
-            }
-        } else {
-            $this->view->response(['msg' => "Campo vacio"], 400);
-            return;
+    
+        $body = $this->getData();
+        $newFecha = $body->fecha ?? null;
+        $newHora = $body->hora ?? null;
+        $newDestinoId = $body->destinoId ?? null;
+    
+        // Validar datos
+        if (empty($newFecha) || empty($newHora) || empty($newDestinoId)) {
+            return $this->view->response(['msg' => 'Campos incompletos'], 404);
+        } else if (!$this->destinoModel->destinoExiste($newDestinoId)){
+            return $this->view->response(['msg' => 'El destino especificado no existe'], 404);
         }
+
+        // Actualizar el viaje
+        $this->viajeModel->modifyViaje($newFecha, $newHora, $newDestinoId, $id);
+    
+        // Obtener datos actualizados para la respuesta
+        $viajeActualizado = $this->viajeModel->getViajeById($id);
+    
+        return $this->view->response(['msg' => 'El viaje fue modificado con éxito.', 'viaje' => $viajeActualizado], 200);
     }
+
+
+/* nuevas funciones acorde a las correcciones */
+
+    function getAllViajes() {
+        $filterBy = isset($_GET['filterBy']) ? $_GET['filterBy'] : null;
+        $filterValue = isset($_GET['filterValue']) ? $_GET['filterValue'] : null;
+        $orderBy = isset($_GET['orderBy']) ? $_GET['orderBy'] : null;
+        $orderValue = isset($_GET['orderValue']) ? $_GET['orderValue'] : 'ASC';
+        $page = isset($_GET['page']) ? intval($_GET['page']) : null;
+        $limit = isset($_GET['limit']) ? intval($_GET['limit']) : null;
+
+        try {
+            $viajes = $this->viajeModel->getViajes($filterBy, $filterValue, $orderBy, $orderValue, $page, $limit);
+            if (!empty($viajes)) {
+                $this->view->response($viajes, 200);
+            } else {
+                $this->view->response(["message" => "No se encontraron viajes"], 404);
+            }
+        } catch (Exception $e) {
+            $this->view->response(["error" => $e->getMessage()], 500);
+        }   
+    }
+
+    function getViajesById (){
+        
+    }
+
+/*
+No se ordena opcionalmente por un campo.
+No usan query params para ordenar, ni filtrar, ni paginar.
+Manejan mal los códigos de error. 
+En PUT y POST si el destino no existe, no manejan el error.
+No funciona GET por ID. Si pueden, usen solo una tabla porque sus endpoints son muy confusos.
+Re entregar
+*/
 }

@@ -13,10 +13,10 @@
     //endponit para traer mi listado de viajes
     //                 endpoint     verbo       desde donde llamo   motodo
 
- 
+  /*
     // Obtener todos los destinos
     // ej:http://localhost/tp_web2_part3/api/destinos
-    $router->addRoute('destinos', 'GET', 'ApiViajesController', 'getDestinos');
+    $router->addRoute('viajes', 'GET', 'ApiViajesController', 'getViajes');
 
     // Obtener viajes por destino específico
     // ej:http://localhost/tp_web2_part3/api/destinos/1/viajes
@@ -61,6 +61,14 @@
     // Eliminar un viaje específico (DELETE)
     // http://localhost/tp_web2_part3/api/viajes/63
     $router->addRoute('viajes/:ID', 'DELETE', 'ApiViajesController', 'deleteViaje');
+
+    nuevos endpoints acorde a los comentario echos */
+
+    $router->addRoute('viajes', 'GET', 'ApiViajesController', 'getAllViajes'); // Obtener todos los viajes (filtros/paginación incluidos)
+    $router->addRoute('viajes/:id', 'GET', 'ApiViajesController', 'getViajeById'); // Obtener un viaje por ID
+    $router->addRoute('viajes', 'POST', 'ApiViajesController', 'createViaje'); // Crear un viaje
+    $router->addRoute('viajes/:id', 'PUT', 'ApiViajesController', 'updateViaje'); // Actualizar un viaje por ID
+    $router->addRoute('viajes/:id', 'DELETE', 'ApiViajesController', 'deleteViaje'); // Eliminar un viaje por ID
 
     // Maneja la solicitud de recurso con el método HTTP especificado
     $router->route($_GET['resource'], $_SERVER['REQUEST_METHOD']);

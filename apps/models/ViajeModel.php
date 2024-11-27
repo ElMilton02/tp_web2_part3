@@ -14,12 +14,6 @@ class viajeModel extends Model
         return $viajes;
     }
 
-    public function getViajeById($id)
-    {
-        $query = $this->db->prepare('SELECT * FROM viajes WHERE id = ?');
-        $query->execute([$id]);
-        return $query->fetch(PDO::FETCH_OBJ);
-    }
 
     function deleteViaje($idViaje)
     {
@@ -75,10 +69,49 @@ class viajeModel extends Model
         return $result['count'] > 0;
     }
 
-    function getViajes() {
-        $query = $this->db->prepare('SELECT * FROM Viajes');
-        $query->execute();
-        $viajes = $query->fetchAll(PDO::FETCH_OBJ);
-        return $viajes;
+    /* nuevas funciones acorde a las correcciones  */
+
+    public function getViajes($filterBy = null, $filterValue = null, $orderBy = null, $orderValue = 'ASC', $page = null, $limit = null) {
+        $sql = 'SELECT viajes.*, destinos.destino 
+                FROM viajes 
+                LEFT JOIN destinos ON viajes.id_destinos = destinos.id 
+                WHERE 1=1';
+    
+        $params = [];
+    
+        // Filtro
+        if ($filterBy && $filterValue) {
+            $validFilters = ['fecha', 'hora', 'id_destinos'];
+            if (in_array($filterBy, $validFilters)) {
+                $sql .= " AND viajes.$filterBy = ?";
+                $params[] = $filterValue;
+            }
+        }
+    
+        // Ordenación
+        if ($orderBy) {
+            $validOrders = ['fecha', 'hora', 'id'];
+            if (in_array($orderBy, $validOrders)) {
+                $sql .= " ORDER BY viajes.$orderBy " . (strtoupper($orderValue) === 'DESC' ? 'DESC' : 'ASC');
+            }
+        }
+    
+        // Paginación
+        if ($page && $limit) {
+            $offset = ($page - 1) * $limit;
+            $sql .= " LIMIT $offset, $limit";
+        }
+    
+        $query = $this->db->prepare($sql);
+        $query->execute($params);
+    
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+            
+    public function getViajeById($id){
+        $query = $this->db->prepare('SELECT * FROM viajes WHERE id = ?');
+        $query->execute([$id]);
+        return $query->fetch(PDO::FETCH_OBJ);
     }
 }
