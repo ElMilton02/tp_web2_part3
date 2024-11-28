@@ -22,7 +22,7 @@ class Model
       // Si no hay tablas, crearlas
         $sql = <<<SQL
       
-                SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+          SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
           START TRANSACTION;
           SET time_zone = "+00:00";
 
@@ -53,10 +53,11 @@ class Model
           --
 
           INSERT INTO `destinos` (`destino`, `id`, `imagen_destino`) VALUES
-          ('roma', 1, 'https://wayfarer.travel/wp-content/uploads/2018/06/Colloseum-Rome-iStock-622806180-EDITED.jpg'),
-          ('Londres', 3, 'https://th.bing.com/th/id/OIP.J2QErjnq41Jqrs1TuSoYRQHaD4?rs=1&pid=ImgDetMain'),
-          ('Nueva York', 5, 'https://th.bing.com/th/id/OIP.ugAMks5e-IS9pWp2SKNe3wHaFj?rs=1&pid=ImgDetMain'),
-          ('Madrid', 7, 'https://th.bing.com/th/id/R.eafa92f0f4c4230dcb053bc474c78d17?rik=W2WZ4YNaO6DHAQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f48%2f51%2fQZgadO.jpg&ehk=mTlbhFs%2fQE4JiKm1%2bWwmqqDul8d4gbFxQGi87WasrFM%3d&risl=&pid=ImgRaw&r=0');
+          ('Roma', 1, 'https://wayfarer.travel/wp-content/uploads/2018/06/Colloseum-Rome-iStock-622806180-EDITED.jpg'),
+          ('Londres', 2, 'https://th.bing.com/th/id/OIP.J2QErjnq41Jqrs1TuSoYRQHaD4?rs=1&pid=ImgDetMain'),
+          ('Nueva York', 3, 'https://th.bing.com/th/id/OIP.ugAMks5e-IS9pWp2SKNe3wHaFj?rs=1&pid=ImgDetMain'),
+          ('Madrid', 4, 'https://th.bing.com/th/id/R.eafa92f0f4c4230dcb053bc474c78d17?rik=W2WZ4YNaO6DHAQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f48%2f51%2fQZgadO.jpg&ehk=mTlbhFs%2fQE4JiKm1%2bWwmqqDul8d4gbFxQGi87WasrFM%3d&risl=&pid=ImgRaw&r=0'),
+          ('Paris', 5, 'https://th.bing.com/th/id/OIP.q60dh7WzKb9fOQthaESViQHaEK?rs=1&pid=ImgDetMain');
 
           -- --------------------------------------------------------
 
@@ -100,18 +101,66 @@ class Model
           --
 
           INSERT INTO `viajes` (`id`, `fecha`, `hora`, `id_destinos`) VALUES
-          (20, '2024-09-16', '12:55:00.0000', 3),
-          (24, '2025-12-10', '23:43:11.0000', 7),
-          (25, '2026-09-22', '00:30:00.0000', 5),
-          (27, '2025-04-01', '00:00:00.0000', 1),
-          (30, '2024-10-25', '08:00:00.0000', 7),
-          (32, '2025-02-01', '20:00:00.0000', 5),
-          (33, '2025-01-01', '14:00:00.0000', 5),
-          (34, '2025-03-31', '09:00:00.0000', 1),
-          (35, '2025-04-30', '22:00:00.0000', 1),
-          (44, '2024-11-01', '22:03:00.0000', 7),
-          (46, '2024-10-26', '22:37:00.0000', 7),
-          (47, '2024-10-31', '22:38:00.0000', 7);
+          (1, '2024-09-16', '00:00:00.0000', 1),
+          (2, '2024-09-16', '00:00:00.0000', 2),
+          (3, '2024-09-16', '00:00:00.0000', 3),
+          (4, '2024-09-16', '00:00:00.0000', 4),
+          (5, '2024-09-16', '00:00:00.0000', 5),
+          (6, '2025-12-10', '00:00:00.0000', 1),
+          (7, '2025-12-10', '00:00:00.0000', 2),
+          (8, '2025-12-10', '00:00:00.0000', 3),
+          (9, '2025-12-10', '00:00:00.0000', 4),
+          (10, '2025-12-10', '00:00:00.0000', 5),
+          (11, '2025-01-01', '00:00:00.0000', 1),
+          (12, '2025-01-01', '00:00:00.0000', 2),
+          (13, '2025-01-01', '00:00:00.0000', 3),
+          (14, '2025-01-01', '00:00:00.0000', 4),
+          (15, '2025-01-01', '00:00:00.0000', 5),
+          (16, '2024-09-16', '08:00:00.0000', 1),
+          (17, '2024-09-16', '08:00:00.0000', 2),
+          (18, '2024-09-16', '08:00:00.0000', 3),
+          (19, '2024-09-16', '08:00:00.0000', 4),
+          (20, '2024-09-16', '08:00:00.0000', 5),
+          (21, '2025-11-10', '08:00:00.0000', 1),
+          (22, '2025-11-10', '08:00:00.0000', 2),
+          (23, '2025-11-10', '08:00:00.0000', 3),
+          (24, '2025-11-10', '08:00:00.0000', 4),
+          (25, '2025-11-10', '08:00:00.0000', 5),
+          (26, '2025-01-01', '08:00:00.0000', 1),
+          (27, '2025-01-01', '08:00:00.0000', 2),
+          (28, '2025-01-01', '08:00:00.0000', 3),
+          (29, '2025-01-01', '08:00:00.0000', 4),
+          (30, '2025-01-01', '08:00:00.0000', 5),
+          (31, '2024-08-16', '14:00:00.0000', 1),
+          (32, '2024-08-16', '14:00:00.0000', 2),
+          (33, '2024-08-16', '14:00:00.0000', 3),
+          (34, '2024-08-16', '14:00:00.0000', 4),
+          (35, '2024-08-16', '14:00:00.0000', 5),
+          (36, '2025-11-10', '14:00:00.0000', 1),
+          (37, '2025-11-10', '14:00:00.0000', 2),
+          (38, '2025-11-10', '14:00:00.0000', 3),
+          (39, '2025-11-10', '14:00:00.0000', 4),
+          (40, '2025-11-10', '14:00:00.0000', 5),
+          (41, '2025-01-01', '14:00:00.0000', 1),
+          (42, '2025-01-01', '14:00:00.0000', 2),
+          (43, '2025-01-01', '14:00:00.0000', 3),
+          (44, '2025-01-01', '14:00:00.0000', 4),
+          (45, '2025-01-01', '14:00:00.0000', 5),
+          (46, '2024-08-16', '22:00:00.0000', 1),
+          (47, '2024-08-16', '22:00:00.0000', 2),
+          (48, '2024-08-16', '22:00:00.0000', 3),
+          (49, '2024-08-16', '22:00:00.0000', 4),
+          (50, '2024-08-16', '22:00:00.0000', 5),
+          (51, '2025-11-10', '22:00:00.0000', 1),
+          (52, '2025-11-10', '22:00:00.0000', 2),
+          (53, '2025-11-10', '22:00:00.0000', 3),
+          (54, '2025-11-10', '22:00:00.0000', 4),
+          (55, '2025-11-10', '22:00:00.0000', 5),
+          (56, '2025-03-01', '22:00:00.0000', 1),
+          (57, '2025-03-01', '22:00:00.0000', 2),
+          (58, '2025-03-01', '22:00:00.0000', 3),
+          (59, '2025-03-01', '22:00:00.0000', 4),
+          (60, '2025-03-01', '22:00:00.0000', 5);
 
           --
           -- Índices para tablas volcadas
@@ -144,7 +193,7 @@ class Model
           -- AUTO_INCREMENT de la tabla `destinos`
           --
           ALTER TABLE `destinos`
-            MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+            MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
           --
           -- AUTO_INCREMENT de la tabla `usuarios`
@@ -156,7 +205,7 @@ class Model
           -- AUTO_INCREMENT de la tabla `viajes`
           --
           ALTER TABLE `viajes`
-            MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+            MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
           --
           -- Restricciones para tablas volcadas
@@ -169,9 +218,9 @@ class Model
             ADD CONSTRAINT `viajes_ibfk_2` FOREIGN KEY (`id_destinos`) REFERENCES `destinos` (`id`);
           COMMIT;
 
-        /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-        /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-        /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+          /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+          /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+          /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
         SQL;
