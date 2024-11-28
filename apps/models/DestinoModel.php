@@ -5,7 +5,7 @@ require_once './apps/models/Model.php';
 
 class DestinoModel extends Model
 {
-
+    /*
     function getDestinos()
     {
 
@@ -45,7 +45,7 @@ class DestinoModel extends Model
         $query = $this->db->prepare('UPDATE destinos SET destino = ?, imagen_destino = ? WHERE id = ?');
         $query->execute([$destino, $img, $idDestino]);
     }
-
+    */
     //nuevas funciones
 
     public function destinoExiste($idDestino) {
@@ -54,7 +54,7 @@ class DestinoModel extends Model
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result['count'] > 0;
     }
-
+    /*
     public function getDestinosFilter($filtro){
         $query = $this->db->prepare("SELECT * FROM Destinos WHERE Destino LIKE :filtro");
         // Asigna el valor a :filtro con el comodín %, asegurando que busque cualquier nombre que comience con la letra
@@ -62,4 +62,5 @@ class DestinoModel extends Model
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    */
 }

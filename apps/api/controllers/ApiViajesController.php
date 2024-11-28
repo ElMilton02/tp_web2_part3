@@ -16,7 +16,7 @@ class ApiViajesController extends ApiController {
         $this->destinoModel = new DestinoModel();
     }
 
-
+    /* 
     public function getOrderedViajes($params = []) {
         $order = $params[':order']; // Captura el parámetro de orden (ASC o DESC)
 
@@ -89,7 +89,7 @@ class ApiViajesController extends ApiController {
             $this->view->response(['msg' => 'No se encontraron resultados.'], 404);
         }
     }
-
+    */
     public function deleteViaje($params = []) {
         $idViaje = $params[':ID'];
         
@@ -176,9 +176,9 @@ class ApiViajesController extends ApiController {
         try {
             $viajes = $this->viajeModel->getViajes($filterBy, $filterValue, $orderBy, $orderValue, $page, $limit);
             if (!empty($viajes)) {
-                $this->view->response($viajes, 200);
+                $this->view->response(['msg' => 'Viajes obtenidos con éxito.', 'Viaje' => $viajes], 200);
             } else {
-                $this->view->response(["message" => "No se encontraron viajes"], 404);
+                $this->view->response(["msg" => "No se encontraron viajes"], 404);
             }
         } catch (Exception $e) {
             $this->view->response(["error" => $e->getMessage()], 500);
@@ -186,13 +186,12 @@ class ApiViajesController extends ApiController {
     }
 
     function getViajesById ($params = []){
-        
         $id = $params[':ID'];
         $viaje = $this->viajeModel->getViajeById($id);
         if ($viaje) {
-            $this->view->response($viaje, 200);
+            $this->view->response(['msg' => 'Viaje obtenido por ID con éxito.', 'Viaje' => $viaje], 200);
         } else {
-            $this->view->response(["message" => "Viaje no encontrado"], 404);
+            $this->view->response(["msg" => "Viaje no encontrado"], 404);
         }
     }
 

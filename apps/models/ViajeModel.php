@@ -5,7 +5,7 @@ require_once './apps/models/Model.php';
 
 class viajeModel extends Model
 {
-
+    /*
     function getViajesByDestino($href)
     {
         $query = $this->db->prepare('SELECT * FROM viajes WHERE id_destinos = ?');
@@ -13,7 +13,7 @@ class viajeModel extends Model
         $viajes = $query->fetchAll(PDO::FETCH_OBJ);
         return $viajes;
     }
-
+    */
 
     function deleteViaje($idViaje)
     {
@@ -35,7 +35,7 @@ class viajeModel extends Model
     }
 
     //nuevas funciones
-
+    /*
     public function getViajesPaginated($page, $perPage) {
         // Calcula el desplazamiento (offset) en base al número de página y elementos por página
         $offset = ($page - 1) * $perPage;
@@ -54,12 +54,12 @@ class viajeModel extends Model
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-
     public function getViajesOrderedByIdDestinos($id, $order) {
         $query = $this->db->prepare("SELECT * FROM Viajes ORDER BY id $order");
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    */
 
     public function viajeExiste($idViaje) {
         $query = $this->db->prepare('SELECT COUNT(*) as count FROM Viajes WHERE id = ?');
@@ -78,7 +78,6 @@ class viajeModel extends Model
                 WHERE 1=1';
     
         $params = [];
-    
         // Filtro
         if ($filterBy && $filterValue) {
             $validFilters = ['fecha', 'hora', 'id_destinos'];
@@ -87,7 +86,6 @@ class viajeModel extends Model
                 $params[] = $filterValue;
             }
         }
-    
         // Ordenación
         if ($orderBy) {
             $validOrders = ['fecha', 'hora', 'id'];
@@ -95,7 +93,6 @@ class viajeModel extends Model
                 $sql .= " ORDER BY viajes.$orderBy " . (strtoupper($orderValue) === 'DESC' ? 'DESC' : 'ASC');
             }
         }
-    
         // Paginación
         if ($page && $limit) {
             $offset = ($page - 1) * $limit;
@@ -104,7 +101,6 @@ class viajeModel extends Model
     
         $query = $this->db->prepare($sql);
         $query->execute($params);
-    
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
