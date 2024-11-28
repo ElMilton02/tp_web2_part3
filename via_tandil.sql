@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-11-2024 a las 21:39:54
+-- Tiempo de generación: 28-11-2024 a las 21:44:18
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -20,6 +20,53 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `via_tandil`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `destinos`
+--
+
+CREATE TABLE `destinos` (
+  `destino` varchar(40) NOT NULL,
+  `id` int(11) NOT NULL,
+  `imagen_destino` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `destinos`
+--
+
+INSERT INTO `destinos` (`destino`, `id`, `imagen_destino`) VALUES
+('Roma', 1, 'https://wayfarer.travel/wp-content/uploads/2018/06/Colloseum-Rome-iStock-622806180-EDITED.jpg'),
+('Londres', 2, 'https://th.bing.com/th/id/OIP.J2QErjnq41Jqrs1TuSoYRQHaD4?rs=1&pid=ImgDetMain'),
+('Nueva York', 3, 'https://th.bing.com/th/id/OIP.ugAMks5e-IS9pWp2SKNe3wHaFj?rs=1&pid=ImgDetMain'),
+('Madrid', 4, 'https://th.bing.com/th/id/R.eafa92f0f4c4230dcb053bc474c78d17?rik=W2WZ4YNaO6DHAQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f48%2f51%2fQZgadO.jpg&ehk=mTlbhFs%2fQE4JiKm1%2bWwmqqDul8d4gbFxQGi87WasrFM%3d&risl=&pid=ImgRaw&r=0'),
+('Paris', 5, 'https://th.bing.com/th/id/OIP.q60dh7WzKb9fOQthaESViQHaEK?rs=1&pid=ImgDetMain');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `nombre_usuario` varchar(30) DEFAULT NULL,
+  `clave_usuario` varchar(255) NOT NULL,
+  `id` int(11) NOT NULL,
+  `rol` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuarios`
+--
+
+INSERT INTO `usuarios` (`nombre_usuario`, `clave_usuario`, `id`, `rol`) VALUES
+('webadmin', '$2y$10$EpcT77aEVovD9C5nEP7sB.HHM8ak3KsC2KztMDXDtOTBo9sk3FWd6', 9, 1),
+('pepe', '$2y$10$.XXGd5n4OcIjyADQShm7YuXG82WKT2w0SmwZHLhazFsAzUOy.RnW6', 10, 0),
+('pedro', '$2y$10$WHGd8KUlZIGk6QxpRm.5UOp9mlKLGy7R7e74LHXhRe62ix3d2EpZ6', 11, 0),
+('saul', '$2y$10$H/p7Oj.55BWzxYncJ0e0puJ9.cfhCbztWeoowuWZaN9n..oQWPCdq', 12, 0),
+('fede', '$2y$10$l3qqtaDBEjXEXEIFmow15OoZ7OqeqaMPuRp3sBuaKoMJnof3DwxPG', 13, 0);
 
 -- --------------------------------------------------------
 
@@ -105,6 +152,18 @@ INSERT INTO `viajes` (`id`, `fecha`, `hora`, `id_destinos`) VALUES
 --
 
 --
+-- Indices de la tabla `destinos`
+--
+ALTER TABLE `destinos`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indices de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `viajes`
 --
 ALTER TABLE `viajes`
@@ -114,6 +173,18 @@ ALTER TABLE `viajes`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `destinos`
+--
+ALTER TABLE `destinos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `viajes`
