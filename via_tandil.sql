@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2024 a las 22:39:29
+-- Tiempo de generación: 28-11-2024 a las 21:39:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -24,52 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `destinos`
---
-
-CREATE TABLE `destinos` (
-  `destino` varchar(40) NOT NULL,
-  `id` int(11) NOT NULL,
-  `imagen_destino` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `destinos`
---
-
-INSERT INTO `destinos` (`destino`, `id`, `imagen_destino`) VALUES
-('roma', 1, 'https://wayfarer.travel/wp-content/uploads/2018/06/Colloseum-Rome-iStock-622806180-EDITED.jpg'),
-('Londres', 3, 'https://th.bing.com/th/id/OIP.J2QErjnq41Jqrs1TuSoYRQHaD4?rs=1&pid=ImgDetMain'),
-('Nueva York', 5, 'https://th.bing.com/th/id/OIP.ugAMks5e-IS9pWp2SKNe3wHaFj?rs=1&pid=ImgDetMain'),
-('Madrid', 7, 'https://th.bing.com/th/id/R.eafa92f0f4c4230dcb053bc474c78d17?rik=W2WZ4YNaO6DHAQ&riu=http%3a%2f%2fcdn.wallpapersafari.com%2f48%2f51%2fQZgadO.jpg&ehk=mTlbhFs%2fQE4JiKm1%2bWwmqqDul8d4gbFxQGi87WasrFM%3d&risl=&pid=ImgRaw&r=0');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `usuarios`
---
-
-CREATE TABLE `usuarios` (
-  `nombre_usuario` varchar(30) DEFAULT NULL,
-  `clave_usuario` varchar(255) NOT NULL,
-  `id` int(11) NOT NULL,
-  `rol` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `usuarios`
---
-
-INSERT INTO `usuarios` (`nombre_usuario`, `clave_usuario`, `id`, `rol`) VALUES
-('webadmin', '$2y$10$EpcT77aEVovD9C5nEP7sB.HHM8ak3KsC2KztMDXDtOTBo9sk3FWd6', 9, 1),
-('pepe', '$2y$10$.XXGd5n4OcIjyADQShm7YuXG82WKT2w0SmwZHLhazFsAzUOy.RnW6', 10, 0),
-('pedro', '$2y$10$WHGd8KUlZIGk6QxpRm.5UOp9mlKLGy7R7e74LHXhRe62ix3d2EpZ6', 11, 0),
-('saul', '$2y$10$H/p7Oj.55BWzxYncJ0e0puJ9.cfhCbztWeoowuWZaN9n..oQWPCdq', 12, 0),
-('fede', '$2y$10$l3qqtaDBEjXEXEIFmow15OoZ7OqeqaMPuRp3sBuaKoMJnof3DwxPG', 13, 0);
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `viajes`
 --
 
@@ -85,34 +39,70 @@ CREATE TABLE `viajes` (
 --
 
 INSERT INTO `viajes` (`id`, `fecha`, `hora`, `id_destinos`) VALUES
-(20, '2024-09-16', '12:55:00.0000', 3),
-(24, '2025-12-10', '23:43:11.0000', 7),
-(25, '2026-09-22', '00:30:00.0000', 5),
-(27, '2025-04-01', '00:00:00.0000', 1),
-(30, '2024-10-25', '08:00:00.0000', 7),
-(32, '2025-02-01', '20:00:00.0000', 5),
-(33, '2025-01-01', '14:00:00.0000', 5),
-(34, '2025-03-31', '09:00:00.0000', 1),
-(35, '2025-04-30', '22:00:00.0000', 1),
-(44, '2024-11-01', '22:03:00.0000', 7),
-(46, '2024-10-26', '22:37:00.0000', 7),
-(47, '2024-10-31', '22:38:00.0000', 7);
+(1, '2024-09-16', '00:00:00.0000', 1),
+(2, '2024-09-16', '00:00:00.0000', 2),
+(3, '2024-09-16', '00:00:00.0000', 3),
+(4, '2024-09-16', '00:00:00.0000', 4),
+(5, '2024-09-16', '00:00:00.0000', 5),
+(6, '2025-12-10', '00:00:00.0000', 1),
+(7, '2025-12-10', '00:00:00.0000', 2),
+(8, '2025-12-10', '00:00:00.0000', 3),
+(9, '2025-12-10', '00:00:00.0000', 4),
+(10, '2025-12-10', '00:00:00.0000', 5),
+(11, '2025-01-01', '00:00:00.0000', 1),
+(12, '2025-01-01', '00:00:00.0000', 2),
+(13, '2025-01-01', '00:00:00.0000', 3),
+(14, '2025-01-01', '00:00:00.0000', 4),
+(15, '2025-01-01', '00:00:00.0000', 5),
+(16, '2024-09-16', '08:00:00.0000', 1),
+(17, '2024-09-16', '08:00:00.0000', 2),
+(18, '2024-09-16', '08:00:00.0000', 3),
+(19, '2024-09-16', '08:00:00.0000', 4),
+(20, '2024-09-16', '08:00:00.0000', 5),
+(21, '2025-11-10', '08:00:00.0000', 1),
+(22, '2025-11-10', '08:00:00.0000', 2),
+(23, '2025-11-10', '08:00:00.0000', 3),
+(24, '2025-11-10', '08:00:00.0000', 4),
+(25, '2025-11-10', '08:00:00.0000', 5),
+(26, '2025-01-01', '08:00:00.0000', 1),
+(27, '2025-01-01', '08:00:00.0000', 2),
+(28, '2025-01-01', '08:00:00.0000', 3),
+(29, '2025-01-01', '08:00:00.0000', 4),
+(30, '2025-01-01', '08:00:00.0000', 5),
+(31, '2024-08-16', '14:00:00.0000', 1),
+(32, '2024-08-16', '14:00:00.0000', 2),
+(33, '2024-08-16', '14:00:00.0000', 3),
+(34, '2024-08-16', '14:00:00.0000', 4),
+(35, '2024-08-16', '14:00:00.0000', 5),
+(36, '2025-11-10', '14:00:00.0000', 1),
+(37, '2025-11-10', '14:00:00.0000', 2),
+(38, '2025-11-10', '14:00:00.0000', 3),
+(39, '2025-11-10', '14:00:00.0000', 4),
+(40, '2025-11-10', '14:00:00.0000', 5),
+(41, '2025-01-01', '14:00:00.0000', 1),
+(42, '2025-01-01', '14:00:00.0000', 2),
+(43, '2025-01-01', '14:00:00.0000', 3),
+(44, '2025-01-01', '14:00:00.0000', 4),
+(45, '2025-01-01', '14:00:00.0000', 5),
+(46, '2024-08-16', '22:00:00.0000', 1),
+(47, '2024-08-16', '22:00:00.0000', 2),
+(48, '2024-08-16', '22:00:00.0000', 3),
+(49, '2024-08-16', '22:00:00.0000', 4),
+(50, '2024-08-16', '22:00:00.0000', 5),
+(51, '2025-11-10', '22:00:00.0000', 1),
+(52, '2025-11-10', '22:00:00.0000', 2),
+(53, '2025-11-10', '22:00:00.0000', 3),
+(54, '2025-11-10', '22:00:00.0000', 4),
+(55, '2025-11-10', '22:00:00.0000', 5),
+(56, '2025-03-01', '22:00:00.0000', 1),
+(57, '2025-03-01', '22:00:00.0000', 2),
+(58, '2025-03-01', '22:00:00.0000', 3),
+(59, '2025-03-01', '22:00:00.0000', 4),
+(60, '2025-03-01', '22:00:00.0000', 5);
 
 --
 -- Índices para tablas volcadas
 --
-
---
--- Indices de la tabla `destinos`
---
-ALTER TABLE `destinos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `viajes`
@@ -126,22 +116,10 @@ ALTER TABLE `viajes`
 --
 
 --
--- AUTO_INCREMENT de la tabla `destinos`
---
-ALTER TABLE `destinos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT de la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
 -- AUTO_INCREMENT de la tabla `viajes`
 --
 ALTER TABLE `viajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- Restricciones para tablas volcadas
