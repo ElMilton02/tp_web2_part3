@@ -67,8 +67,7 @@ Este proyecto es un sitio web para programar viajes en avión. La aplicación pe
 
     9. Obtener todos los viajes con filtros y ordenación por un campo diferente (por ejemplo, hora)
         - Ruta: GET /viajes
-        - URL:
-        - http://localhost/tp_web2_part3/api/viajes?filterBy=hora&filterValue=14:30:00.0000&orderBy=fecha&orderValue=ASC
+        - URL:  http://localhost/tp_web2_part3/api/viajes?filterBy=hora&filterValue=14:30:00.0000&orderBy=fecha&orderValue=ASC
         - Descripción: Filtra los viajes por hora igual a 15:30 y los ordena por fecha en orden ascendente.
 
 
@@ -116,7 +115,7 @@ Este proyecto es un sitio web para programar viajes en avión. La aplicación pe
 
     - tp_web2_part3/api/viajes/:ID
 
-        -  Esta ruta permite actualizar un viaje existente http://localhost/tp_web2_part3/api/viajes/63
+        -  Esta ruta permite actualizar un viaje existente http://localhost/tp_web2_part3/api/viajes/40
             - ej:
             ```json
                 {
@@ -131,4 +130,4 @@ Este proyecto es un sitio web para programar viajes en avión. La aplicación pe
 
     - tp_web2_part3/api/viajes/:ID
 
-        - Esta ruta permite eliminar un viaje específico http://localhost/tp_web2_part3/api/viajes/63
+        - Esta ruta permite eliminar un viaje específico http://localhost/tp_web2_part3/api/viajes/60
